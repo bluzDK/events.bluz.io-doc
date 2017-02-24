@@ -16,14 +16,8 @@ All functions use the common endpoint https://events.bluz.io
 ##Events
 /devices/{device ID}
 
-###POST
-Post a device ID to the API so that data can be logged for it. Data is not stored until the device is posted, so you must do this first (and once) before you try to collect data. It can take up to 30 seconds after this call before data will be available.
-
 ###GET
 Get a list of events based on the device ID. List is returned in order by date, newest events first
-
-###DELETE
-Delete a device ID from logging. This will stop all future logging of data. 
 
 ####Arguments
 
@@ -31,19 +25,19 @@ The following arguments must be passed in the URL:
 - device ID: Device ID of the events to retreieve
 - access token: Access token of your account, used to verify ownership of device
 
-The following are optional parameters for GET that can be provided in the URL
+The following are optional parameters that can be provided in the URL
 - limit: The number of events to return, default is 50
 - name: Name of the event to filter on, is a wildcard match so passing in 'foo' will match 'foo' and 'foobar'
 
 ####Response:
-Code | Description 
---- | --- 
+Code | Description
+--- | ---
 200| Success
 400| Bad Request
 403| Forbidden
 500| Server Error
 
-Get returns a list of event's in the following format:
+Returns a list of event's in the following format:
 ```
 [
   {
@@ -57,12 +51,5 @@ Get returns a list of event's in the following format:
 
 ####Example:
 ```
-# first POST the device ID, only need to do this once per device
-curl https://events.bluz.io/devices/b1e2b1e2b1e2b1e2b1e2b1e2 -d access_token=12345
-
-# next, we can get data!
 curl https://events.bluz.io/devices/b1e2b1e2b1e2b1e2b1e2b1e2\?limit\=10\&access_token\=12345
-
-# if we ever want to delete it from collecting more data...
-curl https://events.bluz.io/devices/b1e2b1e2b1e2b1e2b1e2b1e2\?access_token\=12345 -X DELETE
 ```
