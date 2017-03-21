@@ -4,22 +4,24 @@
 <img src="http://bluz.io/static/img/logo.png" alt="" title="">
 </p>
 
+**NOTICE:** The live version of this API is no longer being maintained. If you would like to use this API, please contact us at hello@bluz.io.
+
 Particle Event API
 ==========
 This API will allow anyone to read back publicly published information from the Particle cloud for a given device ID.
 
 **WARNING**: This API is considered experimental. Data integrity and access are not guaranteed, nor are there any guarantees on latency to fetch it. This API is merely in the test phase and should not be used for mission critical apps. 
 
-##Endpoint
+## Endpoint
 All functions use the common endpoint https://events.bluz.io
 
-##Events
+## Events
 /devices/{device ID}
 
-###GET
+### GET
 Get a list of events based on the device ID. List is returned in order by date, newest events first
 
-####Arguments
+#### Arguments
 
 The following arguments must be passed in the URL:
 - device ID: Device ID of the events to retreieve
@@ -29,7 +31,7 @@ The following are optional parameters that can be provided in the URL
 - limit: The number of events to return, default is 50
 - name: Name of the event to filter on, is a wildcard match so passing in 'foo' will match 'foo' and 'foobar'
 
-####Response:
+#### Response:
 Code | Description
 --- | ---
 200| Success
@@ -49,7 +51,7 @@ Returns a list of event's in the following format:
 ]
 ```
 
-####Example:
+#### Example:
 ```
 curl https://events.bluz.io/devices/b1e2b1e2b1e2b1e2b1e2b1e2\?limit\=10\&access_token\=12345
 ```
